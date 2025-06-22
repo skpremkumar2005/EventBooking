@@ -1,0 +1,5 @@
+{
+  "name": "EventHub - AI Event Planner",
+  "description": "EventHub is a versatile event planning application that streamlines organizing events. It features event creation, guest management, ticket booking, and AI-powered recommendations.",
+  "requestFramePermissions": []
+}
