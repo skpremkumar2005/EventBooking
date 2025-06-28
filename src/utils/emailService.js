@@ -19,10 +19,6 @@ if (EMAIL_HOST && EMAIL_USER && EMAIL_PASS) {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     },
-    // For development with self-signed certificates (e.g. MailHog, MailCatcher)
-    // tls: {
-    //   rejectUnauthorized: false 
-    // }
   });
 
   transporter.verify((error, success) => {
@@ -35,7 +31,6 @@ if (EMAIL_HOST && EMAIL_USER && EMAIL_PASS) {
 
 } else {
   console.warn('Email service is not configured. Please set EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and EMAIL_FROM environment variables.');
-  // Mock transporter for environments where email is not configured
   transporter = {
     sendMail: async (mailOptions) => {
       console.log('Email sending is not configured. Mock sending email:');
@@ -48,13 +43,13 @@ if (EMAIL_HOST && EMAIL_USER && EMAIL_PASS) {
 }
 
 
-/**
- * Sends an email.
- * @param {string} to - Recipient's email address.
- * @param {string} subject - Email subject.
- * @param {string} html - HTML content of the email.
- * @returns {Promise<object>} - Nodemailer response object.
- */
+// /**
+//  * Sends an email.
+//  * @param {string} to - Recipient's email address.
+//  * @param {string} subject - Email subject.
+//  * @param {string} html - HTML content of the email.
+//  * @returns {Promise<object>} - Nodemailer response object.
+//  */
 const sendEmail = async (to, subject, html) => {
   if (!transporter) {
     console.error('Email transporter not initialized. Email not sent.');
@@ -63,7 +58,8 @@ const sendEmail = async (to, subject, html) => {
   }
 
   const mailOptions = {
-    from: EMAIL_FROM,
+    from: EMAIL_FROM
+    ,
     to,
     subject,
     html,

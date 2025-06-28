@@ -11,12 +11,7 @@ const userRoutes = require('./src/routes/userRoutes');
 const eventRoutes = require('./src/routes/eventRoutes');
 
 const app = express();
-
-// Connect to Database
 connectDB();
-
-// Middleware
-app.use(cors()); // Use environment variable for frontend URL
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
